@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Actions -->
+    
+
+    <record id="action_product_kanban" model="ir.actions.act_window">
+        <field name="name">Produits (Kanban)</field>
+        <field name="res_model">gestion.produit</field>
+        <field name="view_mode">kanban</field>
+        <field name="view_id" ref="view_produit_kanban"/>
+    </record>
+
+   
+
+    <!-- Menus -->
+    <menuitem id="menu_management_magazine" name="magazine Management " sequence="10"/>
+
+    <menuitem id="menu_product" name="Product" parent="menu_management_magazine" action="action_product" sequence="10"/>
+    <menuitem id="menu_product_kanban" name="Product Kanban" parent="menu_management_magazine" action="action_product_kanban" sequence="11"/>
+    <menuitem id="menu_order" name="Order" parent="menu_management_magazine" action="action_order" sequence="20"/>
+    
+   
+</odoo>

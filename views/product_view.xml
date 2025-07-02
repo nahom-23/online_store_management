@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_produit_kanban" model="ir.ui.view">
+        <field name="name">gestion.produit.kanban</field>
+        <field name="model">gestion.produit</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="categorie_id" class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="prix"/>
+                <field name="stock"/>
+                <field name="categorie_id"/>
+                <field name="description"/>
+                
+                <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_card oe_kanban_global_click">
+                            <!-- En-tête de la carte -->
+                            <div class="o_kanban_card_header">
+                                <div class="o_kanban_card_header_title">
+                                    <div class="o_primary">
+                                        <strong><field name="name"/></strong>
+                                    </div>
+                                    <div class="o_secondary">
+                                        <i class="fa fa-tag"/> <field name="categorie_id"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Corps de la carte -->
+                            <div class="o_kanban_card_content">
+                                <div class="row">
+                                    <div class="col-6">
+                                        <strong style="color: #017e84;">
+                                            <i class="fa fa-money"/> <field name="prix"/> €
+                                        </strong>
+                                    </div>
+                                    <div class="col-6 text-right">
+                                        <span class="badge" t-attf-class="#{record.stock.raw_value > 10 ? 'badge-success' : (record.stock.raw_value > 0 ? 'badge-warning' : 'badge-danger')}">
+                                            <i class="fa fa-cube"/> Stock: <field name="stock"/>
+                                        </span>
+                                    </div>
+                                </div>
+                                
+                                <!-- Description (si présente) -->
+                                <div class="mt-2" t-if="record.description.value">
+                                    <div class="text-muted">
+                                        <field name="description" widget="text" options="{'max_length': 80}"/>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Pied de carte avec indicateurs -->
+                            <div class="o_kanban_card_footer">
+                                <div class="o_kanban_footer_left">
+                                    <span t-if="record.stock.raw_value == 0" class="text-danger">
+                                        <i class="fa fa-exclamation-triangle"/> Rupture de stock
+                                    </span>
+                                    <span t-elif="record.stock.raw_value &lt; 5" class="text-warning">
+                                        <i class="fa fa-warning"/> Stock faible
+                                    </span>
+                                    <span t-else="" class="text-success">
+                                        <i class="fa fa-check-circle"/> Disponible
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+    <record id="action_product" model="ir.actions.act_window">
+        <field name="name">Product</field>
+        <field name="res_model">management.product</field>
+        <field name="view_mode">kanban,tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_discontent_smiling_face">
+               Create your first product !
+            </p>
+            <p>
+                Add products to your catalog with their prices and stocks.
+            </p>
+        </field>
+    </record>
+     
+</odoo>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_order_tree" model="ir.ui.view">
+        <field name="name">management.order.tree</field>
+        <field name="model">management.order</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="client_id"/>
+                <field name="date_order"/>
+                <field name="amount_total"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_order_form" model="ir.ui.view">
+        <field name="name">management.order.form</field>
+        <field name="model">management.order</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <!-- Boutons d'action workflow -->
+                    <button name="action_confirm" string="Confirm" type="object" 
+                            class="btn-primary" invisible="state != 'broth'"/>
+                    <button name="action_pounds" string="pounds" type="object" 
+                            class="btn-primary" invisible="state != 'confirm'"/>
+                    <button name="action_cancel" string="Cancel" type="object" 
+                            class="btn-secondary" invisible="state in ['pounds', 'cancel']"/>
+                    
+                    <!-- Bouton d'impression -->
+                    <button name="%(gestion_magasin.action_report_commande)d" string="Print" 
+                            type="action" class="btn-success" 
+                            invisible="state == 'broth'"/>
+                    
+                    <!-- Barre de statut -->
+                    <field name="state" widget="statusbar" 
+                           statusbar_visible="broth,confirm,pounds"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <!-- Zone pour les boutons statistiques futurs -->
+                    </div>
+                    
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="client_id"/>
+                            <field name="date_order"/>
+                        </group>
+                        <group>
+                            <field name="amount_total" widget="monetary"/>
+                        </group>
+                    </group>
+                    
+                    <notebook>
+                        <page string="Product">
+                            <field name="product_ids">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="prix" widget="monetary"/>
+                                    <field name="stock"/>
+                                    <field name="categorie_id"/>
+                                </tree>
+                                <form>
+                                    <group>
+                                        <field name="name"/>
+                                        <field name="prix"/>
+                                        <field name="stock"/>
+                                        <field name="categorie_id"/>
+                                    </group>
+                                    <group>
+                                        <field name="description"/>
+                                    </group>
+                                </form>
+                            </field>
+                        </page>
+                        <page string="Supplementary Information">
+                            <group>
+                                <group>
+                                    <label for="client_id" string="Detail Client"/>
+                                    <div>
+                                        <field name="client_id" readonly="1"/>
+                                    </div>
+                                </group>
+                                <group>
+                                    <field name="date_order" readonly="1"/>
+                                    <field name="state" readonly="1"/>
+                                </group>
+                            </group>
+                        </page>
+                    </notebook>
+                </sheet>
+                
+                <!-- Zone de messages/activités -->
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+     <record id="action_order" model="ir.actions.act_window">
+        <field name="name">Order</field>
+        <field name="res_model">management.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Créez votre première commande !
+            </p>
+            <p>
+                Gérez les commandes de vos clients avec un workflow complet.
+            </p>
+        </field>
+    </record>
+    
+     <!-- Search view for filter -->
+    <record id="view_order_search" model="ir.ui.view">
+        <field name="name">management.order.search</field>
+        <field name="model">management.order</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Number"/>
+                <field name="client_id" string="Client"/>
+                <field name="state" string="State"/>
+                
+                <filter name="broth" string="Broth" 
+                        domain="[('state','=','broth')]"/>
+                <filter name="confirm" string="Confirm" 
+                        domain="[('state','=','confirm')]"/>
+                <filter name="pounds" string="Pounds" 
+                        domain="[('state','=','pounds')]"/>
+                
+                <separator/>
+                <filter name="today_dog" string="today_dog" 
+                        domain="[('date_order','=',context_today().strftime('%Y-%m-%d'))]"/>
+                
+                <group expand="0" string="Grouper Par">
+                    <filter name="group_client" string="Client" 
+                            context="{'group_by':'client_id'}"/>
+                    <filter name="group_state" string="State" 
+                            context="{'group_by':'state'}"/>
+                    <filter name="group_date" string="Date" 
+                            context="{'group_by':'date_order'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+    
+</odoo>
