@@ -37,11 +37,6 @@ cd Odoo-Ecommerce-Manager
 
 2. **Start the services**
 
-```bash
-cd dossier_docker
-docker-compose up -d
-```
-
 3. **Access the application**
 
 - URL: <http://localhost:8069>
@@ -87,29 +82,6 @@ docker-compose up -d
                     │  Custom Module  │
                     │ Odoo-Ecommerce-Manager │
                     └─────────────────┘
-```
-
-## 🔧 Development
-
-### Project Structure
-
-```tree
-dossier_docker/Odoo-Ecommerce-Manager/
-├── models/          # Business logic
-│   ├── produit.py   # Product model
-│   └── commande.py  # Order model
-├── views/           # UI definitions
-│   ├── produit_view.xml
-│   ├── commande_view.xml
-│   └── menu.xml
-├── security/        # Access rights
-│   ├── security.xml
-│   └── ir.model.access.csv
-├── data/           # Default data
-│   ├── sequence.xml
-│   └── rapport.xml
-└── __manifest__.py # Module definition
-```
 
 ### Key Models
 
@@ -175,17 +147,6 @@ dossier_docker/Odoo-Ecommerce-Manager/
 | Products | Product catalog management |
 | Orders | Order processing workflow |
 | Reports | PDF generation system |
-
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-- Odoo Community for the excellent framework
-- Docker team for containerization tools
-- PostgreSQL for robust database management
 
 ---
 ⭐ **Star this repository if it helped you!**
