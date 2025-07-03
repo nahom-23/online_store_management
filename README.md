@@ -26,18 +26,12 @@ A comprehensive e-commerce management system built on Odoo 17, featuring intelli
 
 ## 🚀 Quick Start
 
-### Prerequisites
-
-- Docker & Docker Compose
-- 4GB+ RAM
-- 2GB+ disk space
-
 ### Installation
 
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/thejokers69/Odoo-Ecommerce-Manager.git
+https://github.com/nahom-23/online_store_management.git
 cd Odoo-Ecommerce-Manager
 ```
 
@@ -57,20 +51,20 @@ docker-compose up -d
 4. **Install the module**
 
 - Go to Apps → Update Apps List
-- Search for "Gestion Magasin"
+- Search for "Management store"
 - Click Install
 
 ## 📖 Usage
 
 ### Managing Products
 
-1. Navigate to **Gestion Magasin** → **Produits**
+1. Navigate to **Managment storen** → **Product**
 2. Click **Create** to add new products
 3. Set pricing and descriptions
 
 ### Processing Orders
 
-1. Go to **Gestion Magasin** → **Commandes**
+1. Go to **Managment store** → **Orders**
 2. Create new orders and add products
 3. Use workflow buttons: Confirm → Deliver
 4. Generate PDF reports with the Print button
