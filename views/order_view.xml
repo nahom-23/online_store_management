@@ -20,26 +20,23 @@
         <field name="arch" type="xml">
             <form>
                 <header>
-                    <!-- Boutons d'action workflow -->
+                    
                     <button name="action_confirm" string="Confirm" type="object" 
-                            class="btn-primary" invisible="state != 'broth'"/>
+                            class="btn-primary" invisible="state != 'draft'"/>
                     <button name="action_pounds" string="pounds" type="object" 
                             class="btn-primary" invisible="state != 'confirm'"/>
                     <button name="action_cancel" string="Cancel" type="object" 
                             class="btn-secondary" invisible="state in ['pounds', 'cancel']"/>
-                    
-                    <!-- Bouton d'impression -->
                     <button name="%(gestion_magasin.action_report_commande)d" string="Print" 
                             type="action" class="btn-success" 
-                            invisible="state == 'broth'"/>
+                            invisible="state == 'draft'"/>
                     
-                    <!-- Barre de statut -->
                     <field name="state" widget="statusbar" 
-                           statusbar_visible="broth,confirm,pounds"/>
+                           statusbar_visible="draft,confirm,pounds"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
-                        <!-- Zone pour les boutons statistiques futurs -->
+                       
                     </div>
                     
                     <group>
@@ -92,7 +89,7 @@
                     </notebook>
                 </sheet>
                 
-                <!-- Zone de messages/activités -->
+               
                 <div class="oe_chatter">
                     <field name="message_follower_ids"/>
                     <field name="activity_ids"/>
@@ -107,10 +104,10 @@
         <field name="view_mode">tree,form</field>
         <field name="help" type="html">
             <p class="o_view_nocontent_smiling_face">
-                Créez votre première commande !
+                Create your first order !
             </p>
             <p>
-                Gérez les commandes de vos clients avec un workflow complet.
+                Manage your customers’ orders with a comprehensive workflow.
             </p>
         </field>
     </record>
@@ -125,8 +122,8 @@
                 <field name="client_id" string="Client"/>
                 <field name="state" string="State"/>
                 
-                <filter name="broth" string="Broth" 
-                        domain="[('state','=','broth')]"/>
+                <filter name="draft" string="Draft" 
+                        domain="[('state','=','draft')]"/>
                 <filter name="confirm" string="Confirm" 
                         domain="[('state','=','confirm')]"/>
                 <filter name="pounds" string="Pounds" 

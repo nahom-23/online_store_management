@@ -5,7 +5,7 @@
 
     <record id="action_product_kanban" model="ir.actions.act_window">
         <field name="name">Produits (Kanban)</field>
-        <field name="res_model">gestion.produit</field>
+        <field name="res_model">management.product</field>
         <field name="view_mode">kanban</field>
         <field name="view_id" ref="view_produit_kanban"/>
     </record>

@@ -14,13 +14,13 @@ class Order(models.Model):
     product_ids = fields.Many2many("management.product", string="Products")
     state = fields.Selection(
         [
-            ("broth", "Broth"),
+            ("draft", "Draft"),
             ("confirm", "Confirm"),
             ("pounds", "Pounds"),
             ("cancel", "Cancel"),
         ],
         string="Status",
-        default="broth",
+        default="draft",
     )
     amount_total = fields.Float(
         string="amount Total", compute="_compute_amount_total", store=True

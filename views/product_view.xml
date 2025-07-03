@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="view_produit_kanban" model="ir.ui.view">
-        <field name="name">gestion.produit.kanban</field>
-        <field name="model">gestion.produit</field>
+    <record id="view_product_kanban" model="ir.ui.view">
+        <field name="name">management.product.kanban</field>
+        <field name="model">management.product</field>
         <field name="arch" type="xml">
             <kanban default_group_by="categorie_id" class="o_kanban_mobile">
                 <field name="name"/>
@@ -14,7 +14,7 @@
                 <templates>
                     <t t-name="kanban-box">
                         <div class="oe_kanban_card oe_kanban_global_click">
-                            <!-- En-tête de la carte -->
+                           
                             <div class="o_kanban_card_header">
                                 <div class="o_kanban_card_header_title">
                                     <div class="o_primary">
@@ -26,7 +26,7 @@
                                 </div>
                             </div>
                             
-                            <!-- Corps de la carte -->
+                           
                             <div class="o_kanban_card_content">
                                 <div class="row">
                                     <div class="col-6">
@@ -41,7 +41,7 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Description (si présente) -->
+                               
                                 <div class="mt-2" t-if="record.description.value">
                                     <div class="text-muted">
                                         <field name="description" widget="text" options="{'max_length': 80}"/>
@@ -49,17 +49,17 @@
                                 </div>
                             </div>
                             
-                            <!-- Pied de carte avec indicateurs -->
+                            
                             <div class="o_kanban_card_footer">
                                 <div class="o_kanban_footer_left">
                                     <span t-if="record.stock.raw_value == 0" class="text-danger">
                                         <i class="fa fa-exclamation-triangle"/> Rupture de stock
                                     </span>
                                     <span t-elif="record.stock.raw_value &lt; 5" class="text-warning">
-                                        <i class="fa fa-warning"/> Stock faible
+                                        <i class="fa fa-warning"/> Stock feasible
                                     </span>
                                     <span t-else="" class="text-success">
-                                        <i class="fa fa-check-circle"/> Disponible
+                                        <i class="fa fa-check-circle"/> Available
                                     </span>
                                 </div>
                             </div>
