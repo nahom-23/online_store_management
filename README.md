@@ -2,8 +2,7 @@
 
 ![Odoo](https://img.shields.io/badge/Odoo-17-875A7B.svg)
 ![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
-![Docker](https://img.shields.io/badge/Docker-Compose-blue.svg)
-![License](https://img.shields.io/badge/License-MIT-green.svg)
+
 
 ## 🚀 Overview
 
